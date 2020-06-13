@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const CORS = require("express-cors");
+const mongoose = require("mongoose");
+const passport = require("passport");
 
 const app = express();
 
@@ -26,9 +28,29 @@ app.options("*", (req, res, next) => {
   res.sendStatus(204);
 });
 
+// connect to remote DB
+const mongoURI = require("./config/keys").mongoURI;
+mongoose
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Database connection established!"))
+  .catch((err) =>
+    console.warn(
+      "There is some problem with the database connection ->>\n",
+      err
+    )
+  );
+
 app.get("/", (req, res) => {
   res.send("Ticketspls REST API");
 });
+
+app.use(passport.initialize());
+require("./config/passport")(passport);
+
+app.use("/accounts", require("./routes/accounts"));
 
 const port = process.env.PORT || 8080;
 
