@@ -1,0 +1,35 @@
+{
+  "name": "ticketspls",
+  "version": "1.0.0",
+  "description": "A movie ticket booking website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "cd client && yarn run start",
+    "dev": "concurrently -n Server,Yata \"set \"NODE_ENV=dev\" && yarn run server\" \"set \"NODE_ENV=dev\" && yarn run client\" ",
+    "setup": "yarn install && cd client && yarn install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanvishal/ticketspls.git"
+  },
+  "author": "TK Vishal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanvishal/ticketspls/issues"
+  },
+  "homepage": "https://github.com/sanvishal/ticketspls#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1",
+    "express-cors": "^0.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.18",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.1.1"
+  }
+}
