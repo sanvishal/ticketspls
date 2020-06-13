@@ -1,0 +1,48 @@
+.form-container {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  padding: 35px;
+  color: #333;
+
+  .form-title {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    font-family: "Poppins", monospace;
+    p {
+      a {
+        font-weight: bold;
+      }
+      color: grey;
+    }
+  }
+
+  .field {
+    .label {
+      color: grey;
+    }
+
+    input {
+      box-shadow: none;
+      border: none;
+      background-color: #f1f4fc;
+      border-radius: 20px;
+    }
+
+    .button.cta {
+      background-color: $accent-color-dark;
+      font-family: "Poppins", monospace;
+      font-weight: bold;
+      margin-left: auto;
+      display: block;
+      width: 120px;
+    }
+
+    .button:not(.cta) {
+      border: none;
+      color: grey;
+    }
+  }
+}

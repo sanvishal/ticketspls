@@ -1,0 +1,24 @@
+.navbar {
+  height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  img {
+    max-height: 3.2em !important;
+  }
+
+  .navbar-item {
+    .button {
+      background: #fff;
+      color: #333;
+      top: 0px;
+      border: 1px solid transparent;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background: #f1f4fc;
+        top: 2px;
+      }
+      margin-left: 16px;
+    }
+  }
+}

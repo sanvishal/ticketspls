@@ -7,7 +7,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "cd client && yarn run start",
-    "dev": "concurrently -n Server,Yata \"set \"NODE_ENV=dev\" && yarn run server\" \"set \"NODE_ENV=dev\" && yarn run client\" ",
+    "dev": "concurrently -n Server,Client \"set \"NODE_ENV=dev\" && yarn run server\" \"set \"NODE_ENV=dev\" && yarn run client\" ",
     "setup": "yarn install && cd client && yarn install"
   },
   "repository": {
