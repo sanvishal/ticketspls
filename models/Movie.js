@@ -10,13 +10,21 @@ const MovieSchema = new Schema({
     type: Number,
     default: 0,
   },
-  link: {
+  rating: {
+    type: Number,
+    default: 0.0,
+  },
+  director: {
+    type: String,
+    default: "",
+  },
+  actor: {
     type: String,
     default: "",
   },
   duration: {
-    type: String,
-    default: "",
+    type: Number,
+    default: 0,
   },
   genre: {
     type: String,

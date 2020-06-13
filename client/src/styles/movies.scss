@@ -2,23 +2,77 @@
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  height: 100vh;
-  overflow: auto;
+
+  .top-bar {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    .sortby {
+      height: 30px;
+    }
+
+    .dropdown-item {
+      svg {
+        margin-right: 4px;
+        width: 16px;
+        height: 16px;
+        margin-bottom: -3px;
+      }
+    }
+  }
 
   .movies-list {
     margin-top: 20px;
 
     .movie-card-container {
-      height: 100px;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      padding: 14px;
+      border-radius: 4px;
+      background-color: #fafafa;
 
       .movie-card {
         .movie-title {
           font-family: "Poppins", monospace;
+          font-weight: bold;
           font-size: 18px;
+          display: inline-block;
+        }
+
+        .genre {
+          color: grey;
+          font-style: italic;
+        }
+
+        .metadata {
+          float: right;
+          font-size: 14px;
+          font-style: italic;
+          svg {
+            width: 14px;
+            margin-bottom: -2px;
+            height: 14px;
+          }
+
+          .duration,
+          .rating {
+            display: inline-block;
+          }
+          .duration {
+            margin-left: 12px;
+          }
+
+          .rating {
+            svg {
+              margin-right: 4px;
+            }
+          }
+        }
+        .persons {
+          font-size: 14px;
+          color: grey;
         }
       }
     }

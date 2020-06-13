@@ -36,12 +36,14 @@ Movie.count({}).then((count) => {
   if (count !== 50) {
     top50.forEach((movie) => {
       let newMovie = new Movie({
-        title: movie.title,
-        year: +movie.year,
-        link: movie.link,
-        duration: movie.duration,
-        summary: movie.summarytext,
-        genre: movie.genre,
+        title: movie.Title,
+        year: movie.Year,
+        rating: movie.Rating,
+        duration: movie.Runtime,
+        summary: movie.Description,
+        genre: movie.Genre,
+        director: movie.Director,
+        actor: movie.Actor,
         theatres: getRandomTheatre(),
       });
 
