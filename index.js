@@ -6,6 +6,10 @@ const passport = require("passport");
 
 const app = express();
 
+// import all routes
+const accounts = require("./routes/accounts");
+const movies = require("./routes/movies");
+
 // parse data in response body as JSON
 app.use(
   bodyParser.urlencoded({
@@ -50,7 +54,8 @@ app.get("/", (req, res) => {
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-app.use("/accounts", require("./routes/accounts"));
+app.use("/accounts", accounts);
+app.use("/movies", movies);
 
 const port = process.env.PORT || 8080;
 

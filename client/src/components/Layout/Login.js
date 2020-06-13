@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import isEmpty from "is-empty";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
-function Login() {
+function Login({ errors, auth, loginUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [_errors, set_Errors] = useState({});
+  let history = useHistory();
 
   function onSubmit(e) {
     e.preventDefault();
@@ -12,9 +17,19 @@ function Login() {
       email,
       password,
     };
-    console.log(user);
     setLoading(true);
+    loginUser(user);
   }
+
+  useEffect(() => {
+    if (auth.isAuthed) {
+      console.log(auth);
+      setLoading(false);
+      history.push("/movies");
+    }
+    set_Errors(errors);
+    setLoading(false);
+  }, [auth, errors]);
 
   return (
     <div className="form-container login-container">
@@ -68,8 +83,31 @@ function Login() {
           </p>
         </div>
       </form>
+      {!isEmpty(_errors) && (
+        <div className="errors">
+          <div
+            className="notification is-light is-danger"
+            style={{ marginTop: "10px", fontSize: "12px" }}
+          >
+            {typeof _errors.message === "object" ? (
+              <ul style={{ listStyleType: "disc" }}>
+                {Object.keys(_errors.message).map((err) => {
+                  return <li>{_errors.message[err]}</li>;
+                })}
+              </ul>
+            ) : (
+              _errors.message
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

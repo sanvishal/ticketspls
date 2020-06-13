@@ -1,0 +1,26 @@
+.movies-container {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  overflow: auto;
+
+  .movies-list {
+    margin-top: 20px;
+
+    .movie-card-container {
+      height: 100px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+
+      .movie-card {
+        .movie-title {
+          font-family: "Poppins", monospace;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
