@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Show = new Schema({
+const ShowSchema = new Schema({
   time: {
     type: String,
     required: true,
@@ -24,4 +24,4 @@ const Show = new Schema({
   },
 });
 
-module.exports = Show = mongoose.model("users", Show);
+module.exports = Show = mongoose.model("shows", ShowSchema);

@@ -9,6 +9,7 @@ const app = express();
 // import all routes
 const accounts = require("./routes/accounts");
 const movies = require("./routes/movies");
+const shows = require("./routes/shows");
 
 // parse data in response body as JSON
 app.use(
@@ -56,6 +57,7 @@ require("./config/passport")(passport);
 
 app.use("/accounts", accounts);
 app.use("/movies", movies);
+app.use("/shows", shows);
 
 const port = process.env.PORT || 8080;
 

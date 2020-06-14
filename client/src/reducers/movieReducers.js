@@ -1,4 +1,4 @@
-import { SELECTED_MOVIE } from "../actions/types";
+import { SELECTED_MOVIE, BOOK_TICKET } from "../actions/types";
 const isEmpty = require("is-empty");
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
   selected_time: "12PM",
   selected_date: "Today",
   selected_theatre: "A",
+  booked_ticket: {},
 };
 
 export default function (state = initialState, action) {
@@ -17,6 +18,12 @@ export default function (state = initialState, action) {
         selected_time: action.selected_time,
         selected_date: action.selected_date,
         selected_theatre: action.selected_theatre,
+      };
+
+    case BOOK_TICKET:
+      return {
+        ...state,
+        booked_ticket: action.payload,
       };
     default:
       return state;

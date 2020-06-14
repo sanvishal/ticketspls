@@ -47,7 +47,7 @@ function Login({ errors, auth, loginUser }) {
           <label className="label">Email</label>
           <div className="control">
             <input
-              className="form__input email input"
+              className="form__input input"
               type="email"
               placeholder="stark.industries@tony.com"
               onChange={(e) => setEmail(e.target.value)}

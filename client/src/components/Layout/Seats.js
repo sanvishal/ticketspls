@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ChevronsLeft } from "react-feather";
+
+import { bookShow, getShow } from "../../actions/movieActions";
 
 class Seats extends Component {
   state = {
@@ -12,6 +13,7 @@ class Seats extends Component {
     numSeats: 4,
     seats: [],
     tickets: [],
+    booking: false,
   };
 
   componentDidMount() {
@@ -22,14 +24,18 @@ class Seats extends Component {
       selected_theatre,
     } = this.props.movies;
 
-    this.fillInSeats();
-    this.setState({
-      title: selected_movie.title,
-      duration: selected_movie.duration,
-      date: selected_date,
-      time: selected_time,
-      theatre: selected_theatre,
-    });
+    this.setState(
+      {
+        title: selected_movie.title,
+        duration: selected_movie.duration,
+        date: selected_date,
+        time: selected_time,
+        theatre: selected_theatre,
+      },
+      () => {
+        this.fillInSeats();
+      }
+    );
   }
 
   getSeatCode(idx, idy) {
@@ -40,11 +46,23 @@ class Seats extends Component {
     return [id.charCodeAt(0) - 65, id.charCodeAt(1) - 65];
   }
 
-  fillInSeats() {
+  fillInSeats = async () => {
     // available = 1
     // Blocked = 2
     // Covid = 3
     // Selected = 4
+    let bookedTickets = [];
+    await getShow(
+      {
+        movieid: this.props.movies.selected_movie._id,
+        time: this.state.time,
+        date: this.state.date,
+        theatre: this.state.theatre,
+      },
+      (result) => {
+        bookedTickets = result.message;
+      }
+    );
     let seats = [];
     let Nrows = 10;
     let Ncols = 13;
@@ -52,15 +70,18 @@ class Seats extends Component {
       let rowSeats = [];
       for (let cols = 0; cols < Ncols; cols++) {
         let seat = {
-          status: Math.abs(rows - cols) % 2 ? 3 : 1,
+          status: 1,
           id: this.getSeatCode(rows, cols),
         };
+        if (bookedTickets.includes(seat.id)) {
+          seat.status = 2;
+        }
         rowSeats.push(seat);
       }
       seats.push(rowSeats);
     }
     this.setState({ seats });
-  }
+  };
 
   getSeatColor(status) {
     switch (status) {
@@ -112,6 +133,20 @@ class Seats extends Component {
     this.setState({ seats: seats });
   }
 
+  _bookShow = async () => {
+    this.setState({ booking: true });
+    await this.props.bookShow({
+      userid: this.props.auth.user.id,
+      movieid: this.props.movies.selected_movie._id,
+      tickets: this.state.tickets,
+      time: this.state.time,
+      date: this.state.date,
+      theatre: this.state.theatre,
+    });
+    this.setState({ booking: false });
+    this.props.history.push("/ticket/" + this.props.movies.booked_ticket._id);
+  };
+
   renderSeats() {
     const { seats } = this.state;
     if (seats.length) {
@@ -160,8 +195,11 @@ class Seats extends Component {
           </div>
           <div className="book-button">
             <a
-              className={"button is-rounded "}
+              className={
+                "button is-rounded " + (this.state.booking ? "is-loading" : "")
+              }
               disabled={!this.state.tickets.length}
+              onClick={(e) => this._bookShow()}
             >
               Book Tickets
             </a>
@@ -177,4 +215,4 @@ const mapStateToProps = (state) => ({
   movies: state.movies,
 });
 
-export default connect(mapStateToProps, {})(Seats);
+export default connect(mapStateToProps, { bookShow })(Seats);

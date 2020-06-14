@@ -6,6 +6,7 @@ import Register from "./components/Layout/Register";
 import MainPage from "./components/Layout/MainPage";
 import Movies from "./components/Layout/Movies";
 import Seats from "./components/Layout/Seats";
+import Ticket from "./components/Layout/Ticket";
 import PrivateRoute from "./components/PrivateRoute";
 
 import { Provider } from "react-redux";
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/seats" component={Seats} />
+            <PrivateRoute path="/ticket/:id" component={Ticket} />
           </Switch>
         </div>
       </Router>

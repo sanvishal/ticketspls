@@ -84,13 +84,56 @@
             text-align: center;
 
             &.covid {
-                opacity: 0.3;
+                opacity: 0.2;
+            }
+
+            &.block {
+                opacity: 0.2;
             }
 
             &.available {
                 &:hover {
                     background-color: $accent-color-dark !important;
                 }
+            }
+        }
+    }
+}
+
+.ticket-container {
+    width: 500px;
+    height: 90vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+    background: #f3f3f3;
+
+    .ticket {
+        padding: 14px;
+        .title {
+            font-size: 50px;
+            font-weight: 700;
+            font-family: "Poppins", monospace;
+        }
+
+        .tickets {
+            font-size: 20px;
+            color: $accent-color;
+            font-family: "Poppins", monospace;
+            font-weight: 500;
+        }
+
+        .check {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
+            margin-top: 30px;
+            svg {
+                width: 200px;
+                height: 200px;
+                transform: rotate(-12deg);
+                color: $accent-color-dark;
             }
         }
     }
