@@ -6,9 +6,18 @@
   .top-bar {
     margin-top: 10px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
 
-    .sortby {
+    .sortby,
+    .theater,
+    .date {
       height: 30px;
+      margin-left: 10px;
     }
 
     .dropdown-item {
@@ -32,6 +41,24 @@
       padding: 14px;
       border-radius: 4px;
       background-color: #fafafa;
+
+      .shows {
+        .show {
+          display: inline-block;
+          margin-right: 10px;
+          margin-top: 4px;
+          border-radius: 4px;
+          padding: 3px;
+          padding-left: 10px;
+          padding-right: 10px;
+          background-color: $accent-color;
+          color: white;
+          cursor: pointer;
+          &:hover {
+            background-color: $accent-color-dark;
+          }
+        }
+      }
 
       .movie-card {
         .movie-title {

@@ -1,6 +1,4 @@
 const express = require("express");
-const jsonwebtoken = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 
 const Movie = require("../models/Movie");
 

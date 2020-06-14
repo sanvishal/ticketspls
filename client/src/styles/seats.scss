@@ -1,0 +1,97 @@
+.seats-container {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-top: 50px;
+    .movie-title {
+        font-size: 54px;
+        font-family: "Poppins", monospace;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .duration {
+        margin-top: 25px;
+        font-size: 18px;
+        float: right;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: $accent-color;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .meta-data {
+        font-size: 20px;
+        font-family: "Poppins", monospace;
+        font-weight: 500;
+        color: $accent-color;
+    }
+
+    .bottom-bar {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 40px;
+        height: 100px;
+        width: 100%;
+        padding-top: 15px;
+        background-color: #fafafa;
+        .tickets-booked {
+            display: inline-block;
+            font-size: 22px;
+            font-family: "Poppins", monospace;
+            font-weight: bold;
+        }
+        .book-button {
+            float: right;
+            .button {
+                background: $accent-color-dark;
+                transition: all 0.2s ease-in-out;
+                color: white;
+                font-family: "Poppins", monospace;
+                font-weight: bold;
+                border: none;
+                height: 40px;
+                width: 140px;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+        }
+    }
+
+    .seats-grid {
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        width: fit-content;
+        .seat {
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+
+            &.covid {
+                opacity: 0.3;
+            }
+
+            &.available {
+                &:hover {
+                    background-color: $accent-color-dark !important;
+                }
+            }
+        }
+    }
+}

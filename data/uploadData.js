@@ -33,23 +33,25 @@ function getRandomTheatre() {
 }
 
 Movie.count({}).then((count) => {
-  if (count !== 50) {
-    top50.forEach((movie) => {
-      let newMovie = new Movie({
-        title: movie.Title,
-        year: movie.Year,
-        rating: movie.Rating,
-        duration: movie.Runtime,
-        summary: movie.Description,
-        genre: movie.Genre,
-        director: movie.Director,
-        actor: movie.Actor,
-        theatres: getRandomTheatre(),
-      });
+  if (count !== 20) {
+    top50.forEach((movie, idx) => {
+      if (idx < 20) {
+        let newMovie = new Movie({
+          title: movie.Title,
+          year: movie.Year,
+          rating: movie.Rating,
+          duration: movie.Runtime,
+          summary: movie.Description,
+          genre: movie.Genre,
+          director: movie.Director,
+          actor: movie.Actor,
+          theatres: getRandomTheatre(),
+        });
 
-      newMovie.save().then((result) => {
-        console.log(result.title);
-      });
+        newMovie.save().then((result) => {
+          console.log(result.title);
+        });
+      }
     });
   } else {
     process.exit(0);
